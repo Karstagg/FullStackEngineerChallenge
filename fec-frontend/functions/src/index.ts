@@ -1,14 +1,7 @@
 import * as functions from 'firebase-functions'
+import * as express from 'express'
+import {getAllEmployees} from '../apis/employees'
+const app = express();
 
-// if you need to use the Firebase Admin SDK, uncomment the following:
-// import * as admin from 'firebase-admin'
-
-
-// Create and Deploy Cloud Function with TypeScript using script that is
-// defined in functions/package.json:
-//    cd functions
-//    npm run deploy
-
-export const helloWorld = functions.https.onRequest((request: any, response: any) => {
-  response.send('Hello from Firebase!\n\n');
-});
+app.get('/employees', getAllEmployees);
+export const api = functions.https.onRequest(app);

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {Button} from '../../styles/global.css';
 
-export const SignInForm = styled.form`
+export const SignInForm = styled.div`
   justify-self: center;
   width: 40%;
   max-width: 400px;
