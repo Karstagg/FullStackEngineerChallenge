@@ -1,13 +1,12 @@
 import React, {useContext} from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
   Redirect,
 } from "react-router-dom";
 import {GlobalStyle, Layout} from './styles/global.css';
 import SignIn from './containers/signin/signin';
 import Nav from './containers/nav/nav';
+import Admin from './containers/admin/admin';
 import {UserContext} from './providers/userProvider/userProvider';
 
 
@@ -19,11 +18,10 @@ const App: React.FC = () => {
     <Router>
       <Nav/>
       <Layout>
-        {user ? <Switch>
-          <Route path="/">
-            <div>user</div>
-          </Route>
-        </Switch> :
+        {user ? <>
+          <Redirect to="/admin" />
+          <Admin />
+        </> :
             <>
               <Redirect to="/sign-in" />
               <SignIn />

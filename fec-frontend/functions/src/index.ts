@@ -23,10 +23,13 @@ app.get('/employees', (request, response) => {
             isAdmin: doc.data().isAdmin
           });
         });
+        //for demo
+        response.set('Access-Control-Allow-Origin', '*');
         return response.json(employees);
       })
       .catch((err) => {
         console.error(err);
+        response.set('Access-Control-Allow-Origin', '*');
         return response.status(500).json({ error: err.code});
       });
 })

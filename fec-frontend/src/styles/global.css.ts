@@ -28,6 +28,15 @@ export const Button = styled.button`
   }
   color: ${color};
 `
+
+export const Card = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  box-shadow: 
+    5px 5px 7px 0 rgba(0, 0, 0, 0.25),
+    -2px -2px 4px 0 rgba(255, 255, 255, 1);
+`
 // @ts-ignore
 export const GlobalStyle = createGlobalStyle`
 

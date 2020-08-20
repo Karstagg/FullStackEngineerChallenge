@@ -67,7 +67,7 @@ export const completeSignInWithEmail = (location) => {
 }
 
 export const signOut = () => {
-  console.log("signout calle")
+  console.log("signout called")
   auth.signOut().then(() => {
     alert('signed out')
   })

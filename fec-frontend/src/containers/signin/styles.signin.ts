@@ -9,6 +9,7 @@ export const SignInForm = styled.div`
   align-self: center;
   display: grid;
   grid-template-rows: 120px 40px;
+  
 `
 export const SignInFormItem = styled.label`
   display: grid;
