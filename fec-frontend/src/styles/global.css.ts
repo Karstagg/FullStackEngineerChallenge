@@ -20,6 +20,12 @@ export const Button = styled.button`
   outline: none;
   background: transparent;
   border-radius: 10px;
+  :hover {
+    cursor: pointer;
+  }
+  :disabled {
+    cursor: not-allowed;
+  }
   color: ${color};
 `
 // @ts-ignore
