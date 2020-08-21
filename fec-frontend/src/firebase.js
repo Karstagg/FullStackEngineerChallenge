@@ -5,8 +5,8 @@ import "firebase/firestore";
 const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be whitelisted in the Firebase Console.
-  url: 'http://localhost:3000/',
-  //url: 'https://employee-reviewer-f9da9.web.app/',
+  //url: 'http://localhost:3000/',
+  url: 'https://employee-reviewer-f9da9.web.app/',
   // This must be true.
   handleCodeInApp: true,
 };
@@ -39,7 +39,6 @@ export const signInWithEmail = (email) => {
 
 export const completeSignInWithEmail = (location) => {
   if (auth.isSignInWithEmailLink(location)) {
-    console.log('in')
     // Additional state parameters can also be passed via URL.
     // This can be used to continue the user's intended action before triggering
     // the sign-in operation.
@@ -61,7 +60,6 @@ export const completeSignInWithEmail = (location) => {
 }
 
 export const signOut = () => {
-  console.log("signout called")
   auth.signOut().then(() => {
     alert('signed out')
   })

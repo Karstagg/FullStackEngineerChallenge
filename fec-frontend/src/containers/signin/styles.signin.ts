@@ -9,10 +9,13 @@ export const SignInForm = styled.div`
   align-self: center;
   display: grid;
   grid-template-rows: 120px 40px;
-  
+  @media(max-width: 750px) {
+    width: 90%;
+  }
 `
 export const SignInFormItem = styled.label`
   display: grid;
+  justify-self: center;
   grid-template-columns: 15% 85%;
   font-size: 1.5rem;
   @media(max-width: 500px){
@@ -29,6 +32,9 @@ export const SignInFormItem = styled.label`
 export const SignInFormInput = styled.input`
   height: 100%;
   font-size: 1.5rem;
+  @media(max-width: 750px) {
+    text-align: center;
+  }
 `
 export const SignInButton = styled(Button)`
   width: 50%;
