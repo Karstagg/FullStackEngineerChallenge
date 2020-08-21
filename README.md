@@ -1,38 +1,140 @@
-# Full Stack Developer Challenge
-This is an interview challengs. Please feel free to fork. Pull Requests will be ignored.
+#PayPay Coding Challenge
 
-## Requirements
-Design a web application that allows employees to submit feedback toward each other's performance review.
+###Current Status
+Currently only part of the admin flow has been implemented.
 
-*Partial solutions are acceptable.*  It is not necessary to submit a complete solution that implements every requirement.
+The following features have been implemented:
+* Sign up and sign in / sign out
+* Admin view
+    * form to add users to the app
+    * displays added users on cards
+* Admin User view
+    * form to add reviews for user
+    * displays added reviews in cards
+* API methods via express on cloud functions
+    * create users
+    * get all users
+    * create review
+    * get reviews for user
+    
+###How to Run
+There is nothing that needs to be run.
+Please visit [the live demo](https://employee-reviewer-f9da9.web.app) to see the app in action.
 
-### Admin view
-* Add/remove/update/view employees
-* Add/update/view performance reviews
-* Assign employees to participate in another employee's performance review
+You can run the react application on local host with yarn start or npm run start, but without the firebase credentials you will not be able to access the database.
 
-### Employee view
-* List of performance reviews requiring feedback
-* Submit feedback
+###Assumtions
 
-## Challenge Scope
-* High level description of design and technologies used
-* Server side API (using a programming language and/or framework of your choice)
-  * Implementation of at least 3 API calls
-  * Most full stack web developers at PayPay currently use Java, Ruby on Rails, or Node.js on the server(with MySQL for the database), but feel free to use other tech if you prefer
-* Web app
-  * Implementation of 2-5 web pages using a modern web framework (e.g. React or Angular) that talks to server side
-    * This should integrate with your API, but it's fine to use static responses for some of it 
-* Document all assumptions made
-* Complete solutions aren't required, but what you do submit needs to run.
+#####Scope
 
-## How to complete this challenge
-* Fork this repo in github
-* Complete the design and code as defined to the best of your abilities
-* Place notes in your code to help with clarity where appropriate. Make it readable enough to present to the PayPay interview team
-* Complete your work in your own github repo and send the results to us and/or present them during your interview
+* This is a full-stack application project
+    * it will require a database
+    * it will require some backend code to interface with the database
+    * it will require a frontend
+* The project should be functional, efficient, and well coded, attractive, but as simple as possible
+* No backend language or framework has been specified
+* A modern JavaScript framework should be used on the frontend
+* It could be acceptable to leverage cloud architecture instead of building a traditional server
 
-## What are we looking for? What does this prove?
-* Assumptions you make given limited requirements
-* Technology and design choices
-* Identify areas of your strengths
+#####Requirements (MVP)
+
+* This application will need to provide differing levels of access based on user roles
+    * In a real world scenario this app would need authentication
+        * Only registered admins and other employees should be allowed to view performance reviews
+    * In a real world scenario this app would need authorization
+        * Only admins and employees who have been assigned to give a review should be able to see that performance review
+        * As there is only a requirement to view reviews in need of feedback, and submit feedback,  I will assume that employees need not see other employees' feedback and that only admins should see this
+* This application will require a database
+    * The database will require the following 
+        * employees
+            * email: String
+            * name: String
+            * isAdmin: Boolean
+        * review
+            * id: UUID
+            * reviewed_user_id: UUID
+        * feedback
+            * review_id
+            * reviewer_id
+            * reviewed_user_id
+* A real life application of this nature would require the following pages
+    * A login page
+        * This will be a simple login page that will re-direct the user to the appropriate page given their role
+    * An admin landing page
+        * This page will only be visible to admins
+        * This page will contain the following:
+            * a component that lists available users
+            * a filter to search users
+            * a form allows the admin to add/delete/edit users
+    * A basic view for each user
+        * This view will be visible to admins
+        * This view will contain the following:
+            * User information
+            * A list of Performance reviews for the user
+            * A form that allows the admin to add a review
+    * A basic view for each review
+        * This view will be visible to admins
+        * this view will contain the following:
+            * Information about the review
+            * An interface to request feedback on the review from other users
+            * a list of feedback items
+    * An employee landing page
+        * this page will be visible to normal employees and will contain a list of requested reviews
+    * A feedback form page
+        * this will contain a form to submit feedback
+        
+#####Not Required for (MVP)
+* User Profiles
+* Detail views for feedback
+* The ability to review and edit previously submitted reviews
+* The ability for users to view their performance review
+* Detailed performance reviews (Not enough information to know what would be needed other than feedback)
+* 2 factor auth
+* signup confirmation
+
+#####Not Required but nice to have if time allows 
+* deploy to web
+* signup/login with OAuth providers
+
+
+###Project Overview
+####Technology
+    Backend:
+        Datbase:
+            Firestore
+        Auth:
+            Firebase Auth
+        API:
+            Firebase Cloud Functions (TypeScript)
+I chose this backend technology stack because I am familiar with it and it is excellent for rapid prototyping.
+                   
+****                                      
+    Frontend: 
+        Framework:
+            React - basic react app with create-react-app
+        Language:
+            TypeScript
+        Styling:
+            Styled Components
+        REST:
+            Axios
+I chose this frontend technology stack because I am familiar with it and trust it to work well.
+****
+        
+####Design
+    Color Scheme:
+        Main:
+        Alt:
+        Highlight:
+    Style: Neumorphic
+    grid: CSS Grid
+    Component Types:
+        Cards
+        Buttons
+        Inputs
+This is a generic Design pattern meant to take a minimal amount of time with minimal time spent designing layouts.
+        
+                
+        
+
+

@@ -14,7 +14,6 @@ const SignIn: React.FC = () => {
     validEmail && signInWithEmail(email)
   }
 
-  console.log(validEmail, email)
   return <SignInForm>
     <SignInFormItem>
       Email: <SignInFormInput autoFocus required onChange={handleChange} type="email" name="email" placeholder=" example@example.com" />
