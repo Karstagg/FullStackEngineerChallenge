@@ -11,7 +11,7 @@ import {UserContext} from './providers/userProvider/userProvider';
 
 
 const App: React.FC = () => {
-  const user = useContext(UserContext)
+  const user = useContext(UserContext).user
   return (
   <>
     <GlobalStyle />

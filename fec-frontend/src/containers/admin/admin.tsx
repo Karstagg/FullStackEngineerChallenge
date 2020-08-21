@@ -1,60 +1,68 @@
-import React, { useState, useEffect } from 'react'
-import axios, {AxiosResponse} from 'axios'
+import React, {useState, useContext} from 'react'
+import axios from 'axios'
 import {AdminFormContainer, AdminForm, AddUserButton, AdminFormItem, AdminFormInput, EmployeeCard, EmployeeArea} from './styles.admin'
-//import {signInWithEmail} from '../../firebase';
-
-interface Employee {
-  id: string,
-  name: string,
-  isAdmin: boolean,
-  createdAt: Date,
-  email: string
-}
-
+import {Employee} from '../../interfaces/employee';
+import {signInWithEmail} from '../../firebase';
+import {UserContext} from '../../providers/userProvider/userProvider';
 
 const Admin: React.FC = () => {
   const [validEmail, setValidEmail] = useState<boolean>(false)
-  const [formData, setFormData] = useState<object>({})
-  const [employeeData, setEmployeeData] = useState([])
+  const [formData, setFormData] = useState<Employee>({id: "", email: "", name: "", admin: false})
+  const employeeData = useContext(UserContext).users
+
   const handleChange = (e: any) => {
-    setValidEmail(e.target.checkValidity())
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-  const handleSubmit = () => {
-    alert('Email sign-in link sent')
-    console.log(formData)
-    //validEmail && signInWithEmail(email)
+    let name = e.target.name
+    let value = e.target.value
+    if(name === 'email') {
+      console.log(e.target.checkValidity())
+      setValidEmail(e.target.checkValidity())
+    }
+    if(name === 'admin') {
+      value = e.target.value === 'on'
+    }
+    setFormData({ ...formData, [name]: value })
   }
 
-  useEffect(() => {
-    axios.get('https://us-central1-employee-reviewer-f9da9.cloudfunctions.net/webApi/employees').then((response: AxiosResponse) =>{
-      setEmployeeData(response.data)
-    })
-  }, [])
+
+  const handleSubmit = () => {
+    alert('Send Invitation Email')
+    const {
+      email,
+    } = formData
+    axios.post('https://us-central1-employee-reviewer-f9da9.cloudfunctions.net/webApi/addEmployee', JSON.stringify(formData))
+        .then(function (response) {
+          //handle success
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error)
+        });
+     validEmail && signInWithEmail(email)
+  }
 
   return <>
   <AdminFormContainer>
     <AdminForm>
       <h3>Add User</h3>
       <AdminFormItem>
-        Email: <AdminFormInput required onChange={handleChange} type="email" name="email" placeholder="example@example.com" />
+        Email: <AdminFormInput autoComplete="off" required onChange={handleChange} type="email" name="email" placeholder="example@example.com" />
       </AdminFormItem>
       <AdminFormItem>
-        name: <AdminFormInput required onChange={handleChange} type="name" name="email" placeholder="name" />
+        name: <AdminFormInput autoComplete="off" onChange={handleChange} type="test" name="name" placeholder="name" />
       </AdminFormItem>
       <AdminFormItem>
-        admin: <AdminFormInput autoFocus required onChange={handleChange} type="checkbox" name="admin" />
+        admin: <AdminFormInput onChange={handleChange} type="checkbox" name="admin"/>
       </AdminFormItem>
     </AdminForm>
     <AddUserButton disabled={!validEmail} onClick={handleSubmit}>Submit</AddUserButton>
   </AdminFormContainer>
     <EmployeeArea>
-    {employeeData.map((employee: Employee) => {
+    {employeeData.map((employee: Employee, index: number) => {
       const {
         name,
         email,
       } = employee
-      return <EmployeeCard>
+      return <EmployeeCard key={index}>
         <h3>{name}</h3>
         <div>{email}</div>
       </EmployeeCard>

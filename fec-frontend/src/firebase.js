@@ -6,10 +6,9 @@ const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be whitelisted in the Firebase Console.
   url: 'http://localhost:3000/',
+  //url: 'https://employee-reviewer-f9da9.web.app/',
   // This must be true.
   handleCodeInApp: true,
-
-
 };
 
 const firebaseConfig = {
@@ -39,7 +38,6 @@ export const signInWithEmail = (email) => {
 }
 
 export const completeSignInWithEmail = (location) => {
-  console.log('called', location, auth.isSignInWithEmailLink(location))
   if (auth.isSignInWithEmailLink(location)) {
     console.log('in')
     // Additional state parameters can also be passed via URL.
@@ -54,13 +52,9 @@ export const completeSignInWithEmail = (location) => {
       email = window.prompt('Please provide your email for confirmation');
     }
     // The client SDK will parse the code from the link for you.
-    auth.signInWithEmailLink(email, window.location.href)
-      .then(function(result) {
-
+    auth.signInWithEmailLink(email, window.location.href).then(function(result) {
         window.localStorage.removeItem('emailForSignIn');
-        console.log(result)
-      })
-      .catch((e) => {
+      }).catch((e) => {
         console.log(e)
       });
   }
