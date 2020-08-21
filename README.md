@@ -1,6 +1,6 @@
-#PayPay Coding Challenge
+# PayPay Coding Challenge
 
-###Current Status
+### Current Status
 Currently only part of the admin flow has been implemented.
 
 The following features have been implemented:
@@ -17,15 +17,15 @@ The following features have been implemented:
     * create review
     * get reviews for user
     
-###How to Run
+### How to Run
 There is nothing that needs to be run.
 Please visit [the live demo](https://employee-reviewer-f9da9.web.app) to see the app in action.
 
 You can run the react application on local host with yarn start or npm run start, but without the firebase credentials you will not be able to access the database.
 
-###Assumtions
+### Assumtions
 
-#####Scope
+##### Scope
 
 * This is a full-stack application project
     * it will require a database
@@ -36,7 +36,7 @@ You can run the react application on local host with yarn start or npm run start
 * A modern JavaScript framework should be used on the frontend
 * It could be acceptable to leverage cloud architecture instead of building a traditional server
 
-#####Requirements (MVP)
+##### Requirements (MVP)
 
 * This application will need to provide differing levels of access based on user roles
     * In a real world scenario this app would need authentication
@@ -83,7 +83,7 @@ You can run the react application on local host with yarn start or npm run start
     * A feedback form page
         * this will contain a form to submit feedback
         
-#####Not Required for (MVP)
+##### Not Required for (MVP)
 * User Profiles
 * Detail views for feedback
 * The ability to review and edit previously submitted reviews
@@ -92,13 +92,13 @@ You can run the react application on local host with yarn start or npm run start
 * 2 factor auth
 * signup confirmation
 
-#####Not Required but nice to have if time allows 
-* deploy to web
+##### Not Required but nice to have if time allows 
+* deploy to web - decided to deploy because it was minimal effort
 * signup/login with OAuth providers
 
 
-###Project Overview
-####Technology
+### Project Overview
+#### Technology
     Backend:
         Datbase:
             Firestore
@@ -121,7 +121,7 @@ I chose this backend technology stack because I am familiar with it and it is ex
 I chose this frontend technology stack because I am familiar with it and trust it to work well.
 ****
         
-####Design
+#### Design
     Color Scheme:
         Main:
         Alt:
