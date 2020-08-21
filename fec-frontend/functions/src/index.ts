@@ -9,8 +9,7 @@ admin.initializeApp();
 const db = admin.firestore();
 const app = express()
 
-// for demo, should be locked down to a specific url
-app.use(cors({ origin: 'https://employee-reviewer-f9da9.web.app/' }));
+app.use(cors({ origin: 'https://employee-reviewer-f9da9.web.app' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
